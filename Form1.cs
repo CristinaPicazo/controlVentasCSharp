@@ -19,11 +19,10 @@ namespace Ejercicio5
         }
 
         List<Empleado> listaEmpleados = new List<Empleado>();
-
+      
         //introducir empleado
         private void button1_Click(object sender, EventArgs e)
         {
-            string nuevoEmpleado = "empleado" + listaEmpleados.Count.ToString();  //no funciona
             Empleado emp = new Empleado();
 
             emp.Nombre = Interaction.InputBox("Introduzca el nombre de empleado: ");
@@ -38,9 +37,9 @@ namespace Ejercicio5
         {
             string nombre = Interaction.InputBox("Introducir el nombre de empleado a eliminar: ");
             bool borrado = false;
-            int numeroEmpleados = listaEmpleados.Count;
+            int numeroEmpleados = listaEmpleados.Count;         
 
-            for (int i = 0; i < numeroEmpleados; i++)
+            for (int i = 0; i < numeroEmpleados; i++) 
             {
                 if (listaEmpleados[i].Nombre == nombre)
                 {
@@ -52,9 +51,7 @@ namespace Ejercicio5
             if (!borrado)
             {
                 MessageBox.Show("El empleado " + nombre + " no existe.");
-
             }
-
         }
 
         //mostrar lista empleados
@@ -173,7 +170,7 @@ namespace Ejercicio5
                 if (empleado.Nombre == nombre)
                 {
                     empleado.TotalVentas = 0;
-                    empleado.ListaVentas.Clear();//TODO salta aqui, linea 49 de clase
+                    empleado.eliminarVentas();
                     encontrado = true;
                     texto = "Eliminadas las ventas del empleado " + nombre;
                 }
@@ -191,20 +188,32 @@ namespace Ejercicio5
         private void button9_Click(object sender, EventArgs e)
         {
             //TODO no funciona, lo duplica
-            int total = listaEmpleados.Count;  
+            int total = listaEmpleados.Count;
 
-            for (int i = 0; i < listaEmpleados.Count; i++)
+            listaEmpleados.Sort(delegate (Empleado uno, Empleado dos)
             {
-                for (int j = 1; j < listaEmpleados.Count - 1; j++)
-                {
-                    if (listaEmpleados[i].TotalVentas < listaEmpleados[j].TotalVentas)
-                    {
-                        listaEmpleados.Insert(i, listaEmpleados[j]);
-                        listaEmpleados.Remove(listaEmpleados[j]);
-                    }
+                return uno.TotalVentas.CompareTo(dos.TotalVentas);
+            });
 
-                }
-            }
+            //for (int i = 0; i < listaEmpleados.Count; i++)
+            //    listaEmpleados.Sort(delegate(listaemple))
+            //{
+            //    if (listaEmpleados[i].TotalVentas < listaEmpleados[i+1].TotalVentas)
+            //    {
+            //        listaEmpleados.Insert(i, listaempleados[i + 1]);
+            //        listaempleados.insert(i, listaempleados[i+1]);
+            //        //listaempleados.remove(listaempleados[j]);
+            //    }
+                //    for (int j = 1; j < listaEmpleados.Count - 1; j++)
+                //    {
+                //        if (listaEmpleados[i].TotalVentas < listaEmpleados[j].TotalVentas)
+                //        {
+                //            listaEmpleados.Insert(i, listaEmpleados[j]);
+                //            listaEmpleados.Remove(listaEmpleados[j]);
+                //        }
+
+                //    }
+            //}
         }
     }
 }

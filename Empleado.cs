@@ -44,7 +44,7 @@ namespace Ejercicio5
         }
 
         public List<double> ListaVentas {
-            get//TODO salta al borrar todas las ventas, no puede estar vacío?
+            get
             {
                 return ListaVentas;
             }
@@ -128,7 +128,11 @@ namespace Ejercicio5
             return texto;
         }
 
-
+        //Eliminar venta
+        public void eliminarVentas()
+        {
+            listaVentas.Clear();
+        }
 
 
 
